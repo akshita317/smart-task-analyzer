@@ -5,7 +5,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'dev-secret-key-change-in-prod'
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.vercel.app', '*']
+
+# CORS settings for frontend access
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    # Add your Vercel frontend URL here
+    # 'https://your-frontend.vercel.app',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

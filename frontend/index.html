@@ -1,104 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Task Analyzer</title>
-  <link rel="stylesheet" href="/frontend/styles.css" />
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="header-content">
-        <h1>Smart Task Analyzer</h1>
-        <p class="subtitle">Intelligent task prioritization with AI-powered strategies</p>
-      </div>
-      <div class="controls">
-        <div class="strategy-group">
-          <label for="strategy">Strategy</label>
-          <select id="strategy">
-            <option value="smart" selected>Smart Balance</option>
-            <option value="fastest">Fastest Wins</option>
-            <option value="impact">High Impact</option>
-            <option value="deadline">Deadline Driven</option>
-          </select>
-          <span id="strategyHint" class="strategy-hint">Balances urgency, importance, and effort</span>
-        </div>
-        <div class="button-group">
-          <button id="analyzeBtn" class="btn-primary">Analyze</button>
-          <button id="suggestBtn" class="btn-primary">Suggest Top 3</button>
-        </div>
-      </div>
-    </header>
-    <main>
-      <section class="left">
-        <div class="section-header">
-          <h2>Input Tasks</h2>
-          <span id="taskCount" class="task-count">0 tasks</span>
-        </div>
-        
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="form">Add Manually</button>
-          <button class="tab-btn" data-tab="json">Paste JSON</button>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Task Analyzer - AI-Powered Task Prioritization</title>
+    <meta name="description" content="Intelligent task prioritization with AI-powered strategies. Analyze your tasks and get smart suggestions for what to work on next." />
+    <meta name="author" content="Smart Task Analyzer" />
 
-        <form id="taskForm" class="tab-content active" data-tab="form">
-          <div class="form-group">
-            <label for="title">Task Title</label>
-            <input type="text" id="title" placeholder="e.g., Fix login bug" required />
-          </div>
-          <div class="form-group">
-            <label for="due_date">Due Date</label>
-            <input type="date" id="due_date" required />
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="estimated_hours">Estimated Hours</label>
-              <input type="number" id="estimated_hours" placeholder="e.g., 3" min="0" value="1" required />
-            </div>
-            <div class="form-group">
-              <label for="importance">Importance (1-10)</label>
-              <input type="number" id="importance" placeholder="e.g., 8" min="1" max="10" value="5" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="dependencies">Dependencies</label>
-            <input type="text" id="dependencies" placeholder="Other task titles (comma-separated)" />
-          </div>
-          <button type="submit" class="btn-primary">Add Task</button>
-        </form>
+    <meta property="og:title" content="Smart Task Analyzer" />
+    <meta property="og:description" content="Intelligent task prioritization with AI-powered strategies" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-        <div id="jsonTab" class="tab-content" data-tab="json">
-          <textarea id="taskInput" rows="10" placeholder='[
-  {
-    "title": "Fix login bug",
-    "due_date": "2025-11-30",
-    "estimated_hours": 3,
-    "importance": 8,
-    "dependencies": []
-  }
-]'></textarea>
-          <div class="button-row">
-            <button id="loadJsonBtn" class="btn-primary">Load JSON</button>
-            <button id="clearTasksBtn" class="btn-secondary">Clear All</button>
-          </div>
-        </div>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-        <div class="tasks-list">
-          <h3>Tasks Loaded</h3>
-          <div id="localTasks" class="tasks-container"></div>
-        </div>
-      </section>
-
-      <section class="right">
-        <div class="section-header">
-          <h2>Results</h2>
-          <span id="resultCount" class="task-count">-</span>
-        </div>
-        <div id="results" class="results-container"></div>
-      </section>
-    </main>
-  </div>
-  <script src="/frontend/script.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
