@@ -55,32 +55,45 @@ def test_analyze(request):
 
 @csrf_exempt
 def analyze_view(request):
+    """Analyze tasks and return prioritized list"""
     if request.method != 'POST':
-        return HttpResponseBadRequest('POST required')
+        return JsonResponse({'error': 'POST method required'}, status=405)
     
-    # Debug logging
     try:
-        tasks = parse_body(request)
+        # Parse the request body
+        body = request.body
+        
+        if not body:
+            return JsonResponse([], safe=False)
+        
+        # Decode and parse JSON
+        data = json.loads(body.decode('utf-8'))
+        
+        # Ensure it's a list
+        if isinstance(data, dict):
+            tasks = [data]
+        elif isinstance(data, list):
+            tasks = data
+        else:
+            return JsonResponse({'error': 'Expected list or dict'}, status=400)
+        
+        # If no tasks, return empty list
+        if not tasks:
+            return JsonResponse([], safe=False)
+        
+        # Get strategy from query params
+        strategy = request.GET.get('strategy', 'smart')
+        
+        # Analyze tasks
+        result = analyze_tasks(tasks, strategy=strategy)
+        
+        # Return results
+        return JsonResponse(result, safe=False)
+        
+    except json.JSONDecodeError as e:
+        return JsonResponse({'error': f'Invalid JSON: {str(e)}'}, status=400)
     except ValueError as e:
-        error_msg = f'Parse error: {e}'
-        import sys
-        print(f"ANALYZE_ERROR: {error_msg}", file=sys.stderr)
-        return HttpResponseBadRequest(f'Invalid JSON: {e}')
-
-    # Log what we got
-    import sys
-    print(f"ANALYZE_RECEIVED: {len(tasks)} tasks", file=sys.stderr)
-    if tasks:
-        print(f"ANALYZE_FIRST_TASK: {tasks[0]}", file=sys.stderr)
-    
-    strategy = request.GET.get('strategy', 'smart')
-    result = analyze_tasks(tasks, strategy=strategy)
-    
-    print(f"ANALYZE_RESULT: {len(result)} tasks returned", file=sys.stderr)
-    if result:
-        print(f"ANALYZE_FIRST_RESULT: {result[0]}", file=sys.stderr)
-    
-    return JsonResponse(result, safe=False)
+        return JsonResponse({'error': f'Value error: {str(e)}'}, status=400)
 
 
 @csrf_exempt
