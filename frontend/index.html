@@ -10,12 +10,12 @@
   <div class="container">
     <header>
       <div class="header-content">
-        <h1>📋 Smart Task Analyzer</h1>
-        <p class="subtitle">Intelligently prioritize your tasks with AI-powered strategies</p>
+        <h1>Smart Task Analyzer</h1>
+        <p class="subtitle">Intelligent task prioritization with AI-powered strategies</p>
       </div>
       <div class="controls">
         <div class="strategy-group">
-          <label for="strategy">⚙️ Strategy:</label>
+          <label for="strategy">Strategy</label>
           <select id="strategy">
             <option value="smart" selected>Smart Balance</option>
             <option value="fastest">Fastest Wins</option>
@@ -25,21 +25,21 @@
           <span id="strategyHint" class="strategy-hint">Balances urgency, importance, and effort</span>
         </div>
         <div class="button-group">
-          <button id="analyzeBtn" class="btn-primary">🔍 Analyze</button>
-          <button id="suggestBtn" class="btn-primary">⭐ Suggest Top 3</button>
+          <button id="analyzeBtn" class="btn-primary">Analyze</button>
+          <button id="suggestBtn" class="btn-primary">Suggest Top 3</button>
         </div>
       </div>
     </header>
     <main>
       <section class="left">
         <div class="section-header">
-          <h2>📝 Input Tasks</h2>
+          <h2>Input Tasks</h2>
           <span id="taskCount" class="task-count">0 tasks</span>
         </div>
         
         <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="form">✏️ Add Manually</button>
-          <button class="tab-btn" data-tab="json">📋 Paste JSON</button>
+          <button class="tab-btn active" data-tab="form">Add Manually</button>
+          <button class="tab-btn" data-tab="json">Paste JSON</button>
         </div>
 
         <form id="taskForm" class="tab-content active" data-tab="form">
@@ -65,7 +65,7 @@
             <label for="dependencies">Dependencies</label>
             <input type="text" id="dependencies" placeholder="Other task titles (comma-separated)" />
           </div>
-          <button type="submit" class="btn-primary">➕ Add Task</button>
+          <button type="submit" class="btn-primary">Add Task</button>
         </form>
 
         <div id="jsonTab" class="tab-content" data-tab="json">
@@ -79,8 +79,8 @@
   }
 ]'></textarea>
           <div class="button-row">
-            <button id="loadJsonBtn" class="btn-primary">📥 Load JSON</button>
-            <button id="clearTasksBtn" class="btn-secondary">🗑️ Clear All</button>
+            <button id="loadJsonBtn" class="btn-primary">Load JSON</button>
+            <button id="clearTasksBtn" class="btn-secondary">Clear All</button>
           </div>
         </div>
 
@@ -92,7 +92,7 @@
 
       <section class="right">
         <div class="section-header">
-          <h2>✅ Results</h2>
+          <h2>Results</h2>
           <span id="resultCount" class="task-count">-</span>
         </div>
         <div id="results" class="results-container"></div>

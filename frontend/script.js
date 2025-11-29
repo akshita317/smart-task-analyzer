@@ -78,12 +78,12 @@ function renderResults(tasks) {
     <div class="card">
       <div class="card-title">${i + 1}. ${priorityBadge(t.score)} ${t.title}</div>
       <div class="card-meta">
-        <div class="card-meta-item">📅 Due: ${t.due_date}</div>
-        <div class="card-meta-item">⏱️ Effort: ${t.estimated_hours}h</div>
-        <div class="card-meta-item">⭐ Importance: ${t.importance}/10</div>
-        <div class="card-meta-item">🏆 Score: ${Math.round(t.score)}</div>
+        <div class="card-meta-item"><strong>Due:</strong> ${t.due_date}</div>
+        <div class="card-meta-item"><strong>Effort:</strong> ${t.estimated_hours}h</div>
+        <div class="card-meta-item"><strong>Importance:</strong> ${t.importance}/10</div>
+        <div class="card-meta-item"><strong>Score:</strong> ${Math.round(t.score)}</div>
       </div>
-      ${t.explanation ? `<div class="explanation">💡 ${t.explanation}</div>` : ''}
+      ${t.explanation ? `<div class="explanation"><strong>Reasoning:</strong> ${t.explanation}</div>` : ''}
     </div>
   `).join('');
 }
@@ -104,7 +104,7 @@ async function analyze() {
     if (!state.tasks.length) { alert('Add or load some tasks first.'); return; }
     const btn = document.getElementById('analyzeBtn');
     btn.disabled = true;
-    btn.textContent = '⏳ Analyzing...';
+    btn.textContent = 'Analyzing...';
     const data = await postJSON('/api/tasks/analyze/', state.tasks);
     renderResults(data);
   } catch (e) {
@@ -112,7 +112,7 @@ async function analyze() {
   } finally {
     const btn = document.getElementById('analyzeBtn');
     btn.disabled = false;
-    btn.textContent = '🔍 Analyze';
+    btn.textContent = 'Analyze';
   }
 }
 
@@ -121,7 +121,7 @@ async function suggest() {
     if (!state.tasks.length) { alert('Add or load some tasks first.'); return; }
     const btn = document.getElementById('suggestBtn');
     btn.disabled = true;
-    btn.textContent = '⏳ Getting suggestions...';
+    btn.textContent = 'Getting suggestions...';
     const data = await postJSON('/api/tasks/suggest/', state.tasks);
     renderResults(data);
   } catch (e) {
@@ -129,7 +129,7 @@ async function suggest() {
   } finally {
     const btn = document.getElementById('suggestBtn');
     btn.disabled = false;
-    btn.textContent = '⭐ Suggest Top 3';
+    btn.textContent = 'Suggest Top 3';
   }
 }
 
