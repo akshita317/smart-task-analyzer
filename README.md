@@ -7,6 +7,12 @@ Overview
 --------
 A full-stack application that scores and prioritizes tasks using intelligent algorithms. Built with React + TypeScript (frontend) and Django (backend) with professional dark theme UI.
 
+Live Deployment
+---------------
+
+- **Frontend**: [https://smart-task-analyzer-ruddy.vercel.app/](https://smart-task-analyzer-ruddy.vercel.app/) (Vercel)
+- **Backend API**: [https://smart-task-analyzer-production.up.railway.app/](https://smart-task-analyzer-production.up.railway.app/) (Railway)
+
 Quick Start
 -----------
 
