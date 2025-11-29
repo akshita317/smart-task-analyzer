@@ -74,7 +74,7 @@ async function postJSON(url, data) {
 async function analyze() {
   try {
     if (!state.tasks.length) { alert('Add or load some tasks first.'); return; }
-    const data = await postJSON('http://127.0.0.1:8000/api/tasks/analyze/', state.tasks);
+    const data = await postJSON('/api/tasks/analyze/', state.tasks);
     renderResults(data);
   } catch (e) {
     alert('Analyze failed: ' + e.message);
@@ -84,7 +84,7 @@ async function analyze() {
 async function suggest() {
   try {
     if (!state.tasks.length) { alert('Add or load some tasks first.'); return; }
-    const data = await postJSON('http://127.0.0.1:8000/api/tasks/suggest/', state.tasks);
+    const data = await postJSON('/api/tasks/suggest/', state.tasks);
     renderResults(data);
   } catch (e) {
     alert('Suggest failed: ' + e.message);
