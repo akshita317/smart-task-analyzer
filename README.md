@@ -7,21 +7,58 @@ A mini-application that scores and prioritizes tasks using a configurable algori
 
 Quick Start
 -----------
-1. Create venv and install deps
-   - Windows (cmd):
-     - python -m venv venv
-     - venv\Scripts\activate
-     - pip install -r requirements.txt
-   - macOS/Linux (bash):
-     - python3 -m venv venv
-     - source venv/bin/activate
-     - pip install -r requirements.txt
-2. Run server
-   - cd backend
-   - python manage.py migrate
-   - python manage.py runserver
-3. Open frontend
-   - Open frontend/index.html in your browser, or serve statically via any server. It calls http://127.0.0.1:8000/api/tasks/...
+
+### Prerequisites
+- Python 3.8+
+- Git
+
+### Setup Steps
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/akshita317/smart-task-analyzer.git
+cd smart-task-analyzer
+```
+
+**2. Create and activate virtual environment**
+
+Windows:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+macOS/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**3. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**4. Run migrations**
+```bash
+cd backend
+python manage.py migrate
+```
+
+**5. Start the development server**
+```bash
+python manage.py runserver
+```
+The server will be available at `http://127.0.0.1:8000/`
+
+**6. Open the frontend**
+Open `frontend/index.html` in your browser. The interface will communicate with the Django backend at `http://127.0.0.1:8000/api/tasks/`
+
+### Example Usage
+1. Add tasks using the form on the left side, or paste a JSON array
+2. Select a sorting strategy (Smart Balance, Fastest Wins, High Impact, or Deadline Driven)
+3. Click "Analyze" to see prioritized tasks with scores and explanations
+4. Click "Suggest Top 3" to get the top 3 tasks to focus on today
 
 API Endpoints
 -------------
