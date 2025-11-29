@@ -1,4 +1,5 @@
 import { Calendar, Clock, Star, Zap } from 'lucide-react';
+import { Badge } from './badge';
 import type { AnalyzedTask } from './task';
 import { cn } from './utils';
 

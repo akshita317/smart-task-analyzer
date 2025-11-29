@@ -5,6 +5,7 @@ import { JsonInput } from './JsonInput';
 import { TaskList } from './TaskList';
 import { ResultCard } from './ResultCard';
 import { StrategySelect } from './StrategySelect';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 import { Brain, Sparkles, ListTodo, BarChart3, Loader2 } from 'lucide-react';
 import type { Task, AnalyzedTask, Strategy } from './task';
 import { useToast } from './use-toast';
