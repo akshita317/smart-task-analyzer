@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from './button';
 import { FileJson, Trash2 } from 'lucide-react';
-import type { Task } from '@/types/task';
+import type { Task } from './task';
 
 interface JsonInputProps {
   onLoadTasks: (tasks: Task[]) => void;

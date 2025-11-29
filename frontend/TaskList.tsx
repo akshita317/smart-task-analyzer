@@ -1,5 +1,5 @@
 import { Calendar, Clock, Star } from 'lucide-react';
-import type { Task } from '@/types/task';
+import type { Task } from './task';
 
 interface TaskListProps {
   tasks: Task[];

@@ -1,13 +1,5 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
 import { Sparkles, Zap, Target, Clock } from 'lucide-react';
-import type { Strategy } from '@/types/task';
+import type { Strategy } from './task';
 import { strategyHints } from '@/types/task';
 
 interface StrategySelectProps {

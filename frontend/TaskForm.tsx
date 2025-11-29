@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from './button';
 import { Plus } from 'lucide-react';
-import type { Task } from '@/types/task';
+import type { Task } from './task';
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void;

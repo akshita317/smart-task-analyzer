@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TaskForm } from '@/components/TaskForm';
-import { JsonInput } from '@/components/JsonInput';
-import { TaskList } from '@/components/TaskList';
-import { ResultCard } from '@/components/ResultCard';
-import { StrategySelect } from '@/components/StrategySelect';
+import { Button } from './button';
+import { TaskForm } from './TaskForm';
+import { JsonInput } from './JsonInput';
+import { TaskList } from './TaskList';
+import { ResultCard } from './ResultCard';
+import { StrategySelect } from './StrategySelect';
 import { Brain, Sparkles, ListTodo, BarChart3, Loader2 } from 'lucide-react';
-import type { Task, AnalyzedTask, Strategy } from '@/types/task';
-import { useToast } from '@/hooks/use-toast';
+import type { Task, AnalyzedTask, Strategy } from './task';
+import { useToast } from './use-toast';
 import { analyzeTasks, getSuggestions } from './api';
 
 // Fallback mock analysis function (if backend is unavailable)

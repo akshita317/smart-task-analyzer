@@ -1,7 +1,6 @@
 import { Calendar, Clock, Star, Zap } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import type { AnalyzedTask } from '@/types/task';
-import { cn } from '@/lib/utils';
+import type { AnalyzedTask } from './task';
+import { cn } from './utils';
 
 interface ResultCardProps {
   task: AnalyzedTask;
