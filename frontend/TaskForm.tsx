@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Button } from './button';
+import { Label } from './label';
+import { Input } from './input';
 import { Plus } from 'lucide-react';
 import type { Task } from './task';
 

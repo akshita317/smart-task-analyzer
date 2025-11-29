@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from './button';
+import { Textarea } from './textarea';
 import { FileJson, Trash2 } from 'lucide-react';
 import type { Task } from './task';
 
