@@ -26,6 +26,19 @@ def health_check(request):
     return JsonResponse({'status': 'ok', 'message': 'Backend is running'})
 
 
+@csrf_exempt  
+def test_analyze(request):
+    """Test endpoint to debug analyze"""
+    if request.method != 'POST':
+        return JsonResponse({'error': 'POST required'})
+    
+    return JsonResponse({
+        'received_body_length': len(request.body),
+        'received_body': request.body.decode('utf-8')[:500],
+        'test': 'success'
+    })
+
+
 @csrf_exempt
 def analyze_view(request):
     if request.method != 'POST':
