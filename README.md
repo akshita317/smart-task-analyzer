@@ -1,6 +1,8 @@
 Smart Task Analyzer
 ====================
 
+Author: Akshita Kumari
+
 Overview
 --------
 A mini-application that scores and prioritizes tasks using a configurable algorithm. Backend is Django (SQLite), frontend is vanilla HTML/CSS/JS.

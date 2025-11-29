@@ -1,12 +1,14 @@
 # Smart Task Analyzer - Setup and Deployment Guide
 
-## ✅ Project Status: READY TO RUN
+Project Owner: Akshita Kumari
+
+## Project Status: READY TO RUN
 
 Your Smart Task Analyzer project is now fully configured and ready to use!
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Quick Start (1 minute)
 
@@ -24,21 +26,21 @@ Your Smart Task Analyzer project is now fully configured and ready to use!
 
 ---
 
-## 📋 What's Been Set Up
+## What's Been Set Up
 
-✅ **Django Backend**
+DJANGO BACKEND
 - Database configured and migrated (SQLite)
 - Task API endpoints active
 - CORS enabled for frontend communication
 - 4 sorting strategies implemented
 
-✅ **Frontend Interface**
+FRONTEND INTERFACE
 - HTML/CSS/JavaScript UI (no frameworks)
 - Task input form with JSON bulk import
 - Real-time priority visualization
 - Strategy selector
 
-✅ **Git Repository**
+GIT REPOSITORY
 - Local Git initialized
 - Initial commit created
 - GitHub remote configured
@@ -46,7 +48,7 @@ Your Smart Task Analyzer project is now fully configured and ready to use!
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 task/
@@ -72,9 +74,7 @@ task/
 └── README.md              # Documentation
 ```
 
-
-
-## 🧪 Running Tests
+## Running Tests
 
 Test the scoring algorithm:
 ```bash
@@ -84,7 +84,7 @@ python manage.py test task
 
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### POST /api/tasks/analyze/
 Analyze and prioritize a list of tasks.
@@ -122,7 +122,7 @@ Get top 3 recommended tasks for today.
 
 ---
 
-## 🎯 Sorting Strategies
+## Sorting Strategies
 
 1. **Smart Balance** (default) - Weighs all factors equally
 2. **Fastest Wins** - Prioritizes quick, easy tasks
@@ -131,14 +131,14 @@ Get top 3 recommended tasks for today.
 
 ---
 
-## 🌐 GitHub Repository
+## GitHub Repository
 
-**URL:** https://github.com/akshita317/smart-task-analyzer
+URL: https://github.com/akshita317/smart-task-analyzer
 
-**Current Status:**
-- Initial commit: All project files ✅
-- Updated README: Better documentation ✅
-- Ready for development: Yes ✅
+Current Status:
+- Initial commit: All project files
+- Updated README: Better documentation
+- Ready for development: Yes
 
 ### To Push Future Changes:
 ```bash
@@ -149,7 +149,7 @@ git push
 
 ---
 
-## 🛠️ Development Commands
+## Development Commands
 
 | Command | Purpose |
 |---------|---------|
@@ -161,7 +161,7 @@ git push
 
 ---
 
-## 📝 Next Steps (Optional)
+## Next Steps (Optional)
 
 - Add unit tests for edge cases
 - Implement circular dependency detection
@@ -171,7 +171,7 @@ git push
 
 ---
 
-## ⚠️ Important Notes
+## Important Notes
 
 - **Development Only**: The current setup uses Django's development server. For production, use Gunicorn or ASGI.
 - **Database**: SQLite is suitable for development. For production, consider PostgreSQL.
@@ -180,7 +180,7 @@ git push
 
 ---
 
-## 🎉 You're All Set!
+## You're All Set!
 
 Your Smart Task Analyzer is ready to use. Start the server and open the frontend to begin analyzing your tasks!
 
