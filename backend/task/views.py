@@ -21,27 +21,34 @@ def parse_body(request):
 
 
 @csrf_exempt
+def health_check(request):
+    """Simple health check endpoint"""
+    return JsonResponse({'status': 'ok', 'message': 'Backend is running'})
+
+
+@csrf_exempt
 def analyze_view(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('POST required')
     
-    # Debug: log raw body
-    print(f"DEBUG: Raw body: {request.body}")
+    # Log the raw request
+    import sys
+    print(f"DEBUG analyze_view: method={request.method}, content_type={request.content_type}", file=sys.stderr)
+    print(f"DEBUG analyze_view: raw body length={len(request.body)}, body={request.body[:200]}", file=sys.stderr)
     
     try:
         tasks = parse_body(request)
-        print(f"DEBUG: Parsed {len(tasks)} tasks: {tasks}")
+        print(f"DEBUG analyze_view: parsed {len(tasks)} tasks", file=sys.stderr)
     except ValueError as e:
-        print(f"DEBUG: Parse error: {e}")
+        print(f"DEBUG analyze_view: parse error {e}", file=sys.stderr)
         return HttpResponseBadRequest(f'Invalid JSON: {e}')
 
-    if not tasks:
-        print("DEBUG: No tasks parsed, returning empty list")
-        return JsonResponse([], safe=False)
-
     strategy = request.GET.get('strategy', 'smart')
+    print(f"DEBUG analyze_view: strategy={strategy}, task count={len(tasks)}", file=sys.stderr)
+    
     result = analyze_tasks(tasks, strategy=strategy)
-    print(f"DEBUG: Returning {len(result)} analyzed tasks: {result}")
+    print(f"DEBUG analyze_view: returning {len(result)} results", file=sys.stderr)
+    
     return JsonResponse(result, safe=False)
 
 

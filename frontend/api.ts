@@ -3,14 +3,11 @@ import type { Task, AnalyzedTask, Strategy } from './task';
 const API_BASE = getApiBaseUrl();
 
 function getApiBaseUrl(): string {
-  if (typeof window !== 'undefined') {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:8000';
-    }
-    // For production, try to get from environment variable
-    const envUrl = (import.meta as any).env.VITE_API_URL;
-    if (envUrl) return envUrl;
-  }
+  // First priority: environment variable (includes local dev and production)
+  const envUrl = (import.meta as any).env.VITE_API_URL;
+  if (envUrl) return envUrl;
+  
+  // Fallback for development if no env var is set
   return 'http://localhost:8000';
 }
 
