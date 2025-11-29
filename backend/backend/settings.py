@@ -3,9 +3,9 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'dev-secret-key-change-in-prod'
-DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.vercel.app', '*']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-prod')
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*.railway.app', '*.vercel.app', '*']
 
 # CORS settings for frontend access
 CORS_ALLOWED_ORIGINS = [
@@ -13,8 +13,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
-    # Add your Vercel frontend URL here
-    # 'https://your-frontend.vercel.app',
+    'https://*.railway.app',
+    'https://*.vercel.app',
 ]
 
 INSTALLED_APPS = [
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
