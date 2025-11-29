@@ -26,11 +26,13 @@ def analyze_view(request):
         return HttpResponseBadRequest('POST required')
     try:
         tasks = parse_body(request)
+        print(f"DEBUG: Parsed {len(tasks)} tasks: {tasks}")
     except ValueError as e:
         return HttpResponseBadRequest(f'Invalid JSON: {e}')
 
     strategy = request.GET.get('strategy', 'smart')
     result = analyze_tasks(tasks, strategy=strategy)
+    print(f"DEBUG: Returning {len(result)} analyzed tasks")
     return JsonResponse(result, safe=False)
 
 
