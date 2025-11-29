@@ -58,23 +58,27 @@ def analyze_view(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('POST required')
     
-    # Log the raw request
-    import sys
-    print(f"DEBUG analyze_view: method={request.method}, content_type={request.content_type}", file=sys.stderr)
-    print(f"DEBUG analyze_view: raw body length={len(request.body)}, body={request.body[:200]}", file=sys.stderr)
-    
+    # Debug logging
     try:
         tasks = parse_body(request)
-        print(f"DEBUG analyze_view: parsed {len(tasks)} tasks", file=sys.stderr)
     except ValueError as e:
-        print(f"DEBUG analyze_view: parse error {e}", file=sys.stderr)
+        error_msg = f'Parse error: {e}'
+        import sys
+        print(f"ANALYZE_ERROR: {error_msg}", file=sys.stderr)
         return HttpResponseBadRequest(f'Invalid JSON: {e}')
 
-    strategy = request.GET.get('strategy', 'smart')
-    print(f"DEBUG analyze_view: strategy={strategy}, task count={len(tasks)}", file=sys.stderr)
+    # Log what we got
+    import sys
+    print(f"ANALYZE_RECEIVED: {len(tasks)} tasks", file=sys.stderr)
+    if tasks:
+        print(f"ANALYZE_FIRST_TASK: {tasks[0]}", file=sys.stderr)
     
+    strategy = request.GET.get('strategy', 'smart')
     result = analyze_tasks(tasks, strategy=strategy)
-    print(f"DEBUG analyze_view: returning {len(result)} results", file=sys.stderr)
+    
+    print(f"ANALYZE_RESULT: {len(result)} tasks returned", file=sys.stderr)
+    if result:
+        print(f"ANALYZE_FIRST_RESULT: {result[0]}", file=sys.stderr)
     
     return JsonResponse(result, safe=False)
 
