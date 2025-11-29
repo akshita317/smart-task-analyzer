@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Fix login bug",
+    "due_date": "2025-11-30",
+    "estimated_hours": 3,
+    "importance": 8,
+    "dependencies": []
+  },
+  {
+    "title": "Update documentation",
+    "due_date": "2025-12-15",
+    "estimated_hours": 2,
+    "importance": 5,
+    "dependencies": ["Fix login bug"]
+  },
+  {
+    "title": "Design new dashboard",
+    "due_date": "2025-12-10",
+    "estimated_hours": 8,
+    "importance": 7,
+    "dependencies": []
+  },
+  {
+    "title": "Write unit tests",
+    "due_date": "2025-12-05",
+    "estimated_hours": 4,
+    "importance": 6,
+    "dependencies": ["Fix login bug"]
+  },
+  {
+    "title": "Code review for PR #42",
+    "due_date": "2025-11-29",
+    "estimated_hours": 1,
+    "importance": 9,
+    "dependencies": []
+  },
+  {
+    "title": "Setup CI/CD pipeline",
+    "due_date": "2025-12-20",
+    "estimated_hours": 6,
+    "importance": 7,
+    "dependencies": []
+  }
+]
