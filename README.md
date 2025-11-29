@@ -5,13 +5,14 @@ Author: Akshita Kumari
 
 Overview
 --------
-A mini-application that scores and prioritizes tasks using a configurable algorithm. Backend is Django (SQLite), frontend is vanilla HTML/CSS/JS.
+A full-stack application that scores and prioritizes tasks using intelligent algorithms. Built with React + TypeScript (frontend) and Django (backend) with professional dark theme UI.
 
 Quick Start
 -----------
 
 ### Prerequisites
 - Python 3.8+
+- Node.js 16+
 - Git
 
 ### Setup Steps
@@ -22,39 +23,39 @@ git clone https://github.com/akshita317/smart-task-analyzer.git
 cd smart-task-analyzer
 ```
 
-**2. Create and activate virtual environment**
+**2. Setup Backend**
 
 Windows:
 ```bash
+cd backend
 python -m venv venv
 venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
 ```
 
 macOS/Linux:
 ```bash
+cd backend
 python3 -m venv venv
 source venv/bin/activate
-```
-
-**3. Install dependencies**
-```bash
 pip install -r requirements.txt
-```
-
-**4. Run migrations**
-```bash
-cd backend
 python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
 ```
 
-**5. Start the development server**
+Backend will be available at `http://127.0.0.1:8000/`
+
+**3. Setup Frontend** (in new terminal)
+
 ```bash
-python manage.py runserver
+cd frontend
+npm install
+npm run dev
 ```
-The server will be available at `http://127.0.0.1:8000/`
 
-**6. Open the frontend**
-Open `frontend/index.html` in your browser. The interface will communicate with the Django backend at `http://127.0.0.1:8000/api/tasks/`
+Frontend will be available at `http://localhost:3000/`
 
 ### Example Usage
 1. Add tasks using the form on the left side, or paste a JSON array
@@ -68,8 +69,9 @@ API Endpoints
   - Body: JSON array of tasks
   - Optional query param: strategy=fastest|impact|deadline|smart (default smart)
   - Returns: sorted tasks with `score` and `explanation`
-- GET /api/tasks/suggest/
-  - Returns top 3 tasks per smart strategy with explanations
+- POST /api/tasks/suggest/
+  - Body: JSON array of tasks
+  - Returns: top 3 tasks per smart strategy with explanations
 
 Algorithm (Summary)
 -------------------
@@ -80,21 +82,48 @@ Composite score = urgency + importance_weight + quick_wins - effort_penalty + de
 - Dependencies: tasks blocking more other tasks gain priority; unresolved/circular deps penalized.
 - Strategy modifiers: fastest (emphasize small effort), impact (emphasize importance), deadline (emphasize urgency), smart (balanced).
 
+Tech Stack
+----------
+**Backend:**
+- Django 5.2.5
+- Python 3.x
+- SQLite (dev), PostgreSQL (production)
+
+**Frontend:**
+- React 18
+- TypeScript 5.3
+- Vite 5.4 (build tool)
+- Tailwind CSS 3.3
+- Lucide React (icons)
+
 Design Decisions
 ----------------
-- JSON input allows bulk analysis without persisting; Django model supports persistence if extended later.
-- Robust parsing for dates and defaults to handle missing/invalid fields.
-- Deterministic scoring with explanation strings for transparency.
-- Simple strategies via weight presets; future work can expose user-configurable weights.
+- React + TypeScript for type-safe frontend
+- Vite for fast development and optimized builds
+- Dark theme with professional cyan/blue accents
+- Responsive layout using Tailwind CSS
+- Real-time API integration with fallback to local analysis
+- CORS middleware for seamless frontend-backend communication
+
+Deployment
+----------
+See [QUICK_DEPLOY.md](QUICK_DEPLOY.md) for deployment options:
+- Railway (recommended, easiest)
+- Render
+- Heroku
+- Vercel + separate backend
 
 Run Tests
 ---------
-- cd backend
-- python manage.py test tasks
+```bash
+cd backend
+python manage.py test tasks
+```
 
 Future Improvements
 -------------------
 - Circular dependency graph visualization
-- Holidays/weekends in urgency
+- Holidays/weekends in urgency calculation
 - Eisenhower Matrix view
 - Learning system (user feedback to adjust weights)
+- Task persistence and user accounts
