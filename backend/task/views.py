@@ -24,15 +24,24 @@ def parse_body(request):
 def analyze_view(request):
     if request.method != 'POST':
         return HttpResponseBadRequest('POST required')
+    
+    # Debug: log raw body
+    print(f"DEBUG: Raw body: {request.body}")
+    
     try:
         tasks = parse_body(request)
         print(f"DEBUG: Parsed {len(tasks)} tasks: {tasks}")
     except ValueError as e:
+        print(f"DEBUG: Parse error: {e}")
         return HttpResponseBadRequest(f'Invalid JSON: {e}')
+
+    if not tasks:
+        print("DEBUG: No tasks parsed, returning empty list")
+        return JsonResponse([], safe=False)
 
     strategy = request.GET.get('strategy', 'smart')
     result = analyze_tasks(tasks, strategy=strategy)
-    print(f"DEBUG: Returning {len(result)} analyzed tasks")
+    print(f"DEBUG: Returning {len(result)} analyzed tasks: {result}")
     return JsonResponse(result, safe=False)
 
 
