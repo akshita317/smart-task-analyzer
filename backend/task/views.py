@@ -6,18 +6,32 @@ from .scoring import analyze_tasks, top_suggestions
 
 def parse_body(request):
     try:
-        body_unicode = request.body.decode('utf-8')
-        if not body_unicode:
+        # Get the raw body
+        body = request.body
+        if not body:
+            # Empty body
             return []
+        
+        body_unicode = body.decode('utf-8')
+        if not body_unicode.strip():
+            return []
+        
         data = json.loads(body_unicode)
+        
+        # Handle different input formats
         if isinstance(data, dict):
-            # wrap single-object input into list
+            # Single task object
             return [data]
-        if not isinstance(data, list):
-            raise ValueError('Expected a JSON array of tasks')
-        return data
+        elif isinstance(data, list):
+            # Array of tasks
+            return data
+        else:
+            raise ValueError(f'Expected dict or list, got {type(data).__name__}')
+            
+    except json.JSONDecodeError as e:
+        raise ValueError(f'Invalid JSON: {str(e)}')
     except Exception as e:
-        raise ValueError(str(e))
+        raise ValueError(f'Error parsing body: {str(e)}')
 
 
 @csrf_exempt
