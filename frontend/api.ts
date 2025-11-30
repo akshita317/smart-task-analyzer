@@ -10,7 +10,7 @@ function getApiBaseUrl(): string {
   
   // Second priority: Check if we're in production (not localhost)
   if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
-    const prodUrl = 'https://smart-task-analyzer-backend.up.railway.app';
+    const prodUrl = 'https://web-production-07cb.up.railway.app';
     console.log('Using production URL:', prodUrl);
     return prodUrl;
   }
