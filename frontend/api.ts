@@ -1,18 +1,28 @@
 import type { Task, AnalyzedTask, Strategy } from './task';
 
-const API_BASE = getApiBaseUrl();
-
 function getApiBaseUrl(): string {
   // First priority: environment variable (includes local dev and production)
   const envUrl = (import.meta as any).env.VITE_API_URL;
-  if (envUrl) return envUrl;
+  if (envUrl) {
+    console.log('Using VITE_API_URL:', envUrl);
+    return envUrl;
+  }
   
-  // Fallback for development if no env var is set
+  // Second priority: Check if we're in production (not localhost)
+  if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
+    const prodUrl = 'https://smart-task-analyzer-backend.up.railway.app';
+    console.log('Using production URL:', prodUrl);
+    return prodUrl;
+  }
+  
+  // Fallback for local development
+  console.log('Using localhost');
   return 'http://localhost:8000';
 }
 
 export async function analyzeTasks(tasks: Task[], strategy: Strategy = 'smart'): Promise<AnalyzedTask[]> {
   try {
+    const API_BASE = getApiBaseUrl();
     const url = new URL(`${API_BASE}/api/tasks/analyze/`);
     url.searchParams.append('strategy', strategy);
     
@@ -35,6 +45,7 @@ export async function analyzeTasks(tasks: Task[], strategy: Strategy = 'smart'):
 
 export async function getSuggestions(tasks: Task[], strategy: Strategy = 'smart'): Promise<AnalyzedTask[]> {
   try {
+    const API_BASE = getApiBaseUrl();
     const url = new URL(`${API_BASE}/api/tasks/suggest/`);
     url.searchParams.append('strategy', strategy);
     
@@ -57,6 +68,7 @@ export async function getSuggestions(tasks: Task[], strategy: Strategy = 'smart'
 
 export async function testConnection(): Promise<boolean> {
   try {
+    const API_BASE = getApiBaseUrl();
     const response = await fetch(`${API_BASE}/api/health/`, {
       method: 'GET',
     });
